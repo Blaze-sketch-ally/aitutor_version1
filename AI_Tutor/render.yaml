@@ -1,0 +1,78 @@
+# Render Blueprint for the AI Tutor FastAPI backend.
+# https://render.com/docs/blueprint-spec
+#
+# Docker runtime (not native Python) is required here because
+# agents/video_summary_agent.py needs the ffmpeg binary at runtime
+# (yt-dlp + pydub) -- see ./Dockerfile.
+#
+# This file only describes the service; it does not deploy anything by
+# itself. In the Render dashboard: New -> Blueprint -> point at this
+# repo -> Render reads this file -> you fill in the env vars marked
+# `sync: false` below (their real values are never stored in this repo).
+
+services:
+  - type: web
+    name: ai-tutor-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      # --- Supabase ---
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: SUPABASE_JWT_SECRET
+        sync: false
+
+      # --- CORS ---
+      # Comma-separated. Set this to your Vercel frontend's real URL
+      # once you have it, e.g.:
+      #   https://your-app.vercel.app,https://your-custom-domain.com
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+
+      # --- LLM / model providers ---
+      # Canonical Groq key name for all clients (text, vision, Whisper).
+      # GROQ_API_KEY still works as a deprecated fallback.
+      - key: GROQ_APIKEY
+        sync: false
+      - key: HF_TOKEN
+        sync: false
+      # Model ids (models/config.py). Unset = in-code defaults. If the
+      # deployed VISION_MODEL is still qwen/qwen3.6-27b, update it or
+      # unset it — that model is retired.
+      - key: TEXT_MODEL
+        sync: false
+      - key: FAST_MODEL
+        sync: false
+      - key: VISION_MODEL_PROVIDER
+        sync: false
+      - key: VISION_MODEL
+        sync: false
+
+      # --- External services ---
+      - key: YOUTUBE_API_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+
+      # --- LangSmith tracing (optional) ---
+      - key: LANGSMITH_TRACING
+        sync: false
+      - key: LANGSMITH_ENDPOINT
+        sync: false
+      - key: LANGSMITH_API_KEY
+        sync: false
+      - key: LANGSMITH_PROJECT
+        sync: false
+      - key: LANGCHAIN_PROJECT
+        sync: false
+
+      # --- Attachment limits (optional, has in-code defaults) ---
+      - key: MAX_IMAGE_SIZE_MB
+        sync: false
+      - key: MAX_IMAGES_PER_MESSAGE
+        sync: false

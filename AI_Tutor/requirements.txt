@@ -1,0 +1,72 @@
+# UI
+streamlit>=1.45.0
+
+# LLM + Agents
+groq>=0.28.0
+
+# LangChain ecosystem (for LangSmith + future LangGraph upgrades)
+langchain>=0.3.25
+langchain-core>=0.3.65
+langchain-community>=0.3.24
+langgraph>=0.4.8
+langsmith>=0.3.45
+
+# Environment handling
+python-dotenv>=1.1.0
+
+# API calls
+requests>=2.32.3
+
+# YouTube search
+youtube-search-python>=1.6.6
+
+# arXiv research papers
+arxiv>=2.2.0
+
+# Web research (news + general web search)
+tavily-python>=0.5.0
+
+# -----------------------------
+# RAG STACK (embeddings + PDF parsing; vector storage is Supabase/pgvector)
+# -----------------------------
+
+sentence-transformers>=4.1.0
+pypdf>=5.6.0
+
+# -----------------------------
+# ATTACHMENTS / VISION (image validation + multipart uploads)
+# -----------------------------
+
+Pillow>=10.0.0
+python-multipart>=0.0.9
+
+# -----------------------------
+# DATA / UTILITIES
+# -----------------------------
+
+pydantic>=2.11.5
+pandas>=2.2.3
+numpy>=2.2.6
+plotly>=6.1.2
+
+google-api-python-client
+
+fpdf2
+torchvision
+supabase
+PyJWT[crypto]>=2.8.0
+fastapi
+uvicorn[standard]
+langchain-text-splitters
+youtube-transcript-api
+yt-dlp>=2025.1.1
+pydub>=0.25.1
+# pydub imports stdlib `audioop`, which was removed in Python 3.13 (PEP
+# 594) -- this backport restores it. No-op on Python <3.13.
+audioop-lts>=0.2.1; python_version >= "3.13"
+
+# -----------------------------
+# TESTING (dev-only, not needed to run the app)
+# -----------------------------
+
+pytest>=8.0.0

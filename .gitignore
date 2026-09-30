@@ -1,0 +1,86 @@
+# =========================
+# Python
+# =========================
+venv/
+.venv/
+**/venv/
+**/.venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+.pytest_cache/
+
+# =========================
+# Environment / Secrets
+# =========================
+# Ignore all real environment files.
+.env
+.env.*
+**/.env
+**/.env.*
+
+# Allow safe templates only.
+!.env.example
+!**/.env.example
+!.env.local.example
+!**/.env.local.example
+
+# =========================
+# Next.js
+# =========================
+node_modules/
+**/node_modules/
+.next/
+**/.next/
+out/
+**/out/
+
+# =========================
+# Uploads / Temporary Files
+# =========================
+uploads/
+**/uploads/
+temp_uploads/
+**/temp_uploads/
+
+# =========================
+# PRIVATE LEGACY USER DATA
+# NEVER COMMIT
+# =========================
+legacy_users_data/
+**/legacy_users_data/
+
+AI_Tutor/data/users.json
+AI_Tutor/data/users/
+
+# =========================
+# Legacy Vector Databases
+# =========================
+chroma/
+chromadb/
+vector_db/
+data/chroma_db/
+**/chroma/
+**/chromadb/
+**/vector_db/
+**/data/chroma_db/
+
+# =========================
+# Local AI / IDE Configuration
+# =========================
+.claude/
+**/.claude/
+.vscode/
+**/.vscode/
+
+# =========================
+# Logs / Cache / OS
+# =========================
+*.log
+.cache/
+**/.cache/
+.DS_Store
+Thumbs.db
+# Old Git repository backups - do not commit
+git_history_backup_*/
+nested_AI_Tutor_git_backup_*/

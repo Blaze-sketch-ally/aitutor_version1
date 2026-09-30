@@ -1,0 +1,26 @@
+# Never bake local secrets or local dev artifacts into the image.
+.env
+.env.*
+!.env.example
+
+.git
+.gitignore
+__pycache__/
+*.pyc
+.pytest_cache/
+tests/
+
+# Legacy local-storage data (pre-Supabase) -- not read by main.py's
+# FastAPI stack, no reason to ship it in the image.
+data/
+uploads/
+temp_uploads/
+
+# Streamlit-era files, not used by the deployed FastAPI app.
+app.py
+app_new.py
+assets/
+
+.vscode/
+.devcontainer/
+*.docx
